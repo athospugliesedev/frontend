@@ -6,6 +6,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",],
   theme: {
     extend: {
+      fontFamily: {
+        abc: ["Sedgwick Ave Display", "cursive"]
+      },
       backgroundImage: {
       blur: 'url(/src/assets/blur.jpg)'
     },},
