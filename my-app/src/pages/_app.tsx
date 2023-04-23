@@ -22,8 +22,8 @@ const sedgwick = SedgwickAveDisplay({
 export default function App({ Component, pageProps }: AppProps) {
   const links = [
     {
-      title: "Início",
-      href: "inicio",
+      title: "Home",
+      href: "/",
     },
     {
       title: "Sobre",
@@ -41,7 +41,10 @@ export default function App({ Component, pageProps }: AppProps) {
       title: "Contato",
       href: "contato",
     },
+
   ];
+
+
 
   return (
   <>
@@ -57,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Link
               key={link.href}
               href={`/${link.href}`}
-              className="py-2 px-3 rounded-md text-zinc-100 hover:text-zinc-300 hover:bg-white/5 transition-all duration-150 leading-tight"
+              className="uppercase py-2 px-3 rounded-md text-zinc-100 hover:text-zinc-300 hover:bg-white/5 transition-all duration-150 leading-tight"
             >
               {link.title}
             </Link>
@@ -69,8 +72,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <button className="text-white leading-tight font-medium py-3 px-4 rounded-full ring-inset ring-1 ring-white/5 bg-white/5 hover:bg-white/10 active:opacity-80 transition-all duration-75">
           Log in
         </button>
-        <button className="text-white leading-tight font-medium py-3 px-4 rounded-full ring-inset ring-1 ring-orange-400 bg-orange-500 hover:ring-orange-500 hover:bg-orange-600 active:opacity-80 transition-all duration-75">
+        <button 
+        className="text-white leading-tight font-medium py-3 px-4 rounded-full ring-inset ring-1 ring-orange-400 bg-orange-500 hover:ring-orange-500 hover:bg-orange-600 active:opacity-80 transition-all duration-75 cursor-pointer">
+         <Link
+         href='/signArea'>
           Registre-se
+         </Link>
         </button>
       </div>
     </header>
