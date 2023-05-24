@@ -64,7 +64,7 @@ function PostForm() {
 }
 
 
-function Feed() {
+function FeedPosts() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [editPostId, setEditPostId] = useState('');
   const [editContent, setEditContent] = useState('');
@@ -192,7 +192,7 @@ function Feed() {
 
 }
 
-const PrivatePage: React.FC = () => {
+const Feed: React.FC = () => {
   const { user, logout } = useAuth();
   const router = useRouter();
 
@@ -213,9 +213,9 @@ const PrivatePage: React.FC = () => {
       <h2 className="text-xl mt-4">Post Form</h2>
       <PostForm />
       <h2 className="text-xl mt-4">Feed</h2>
-      <Feed />
+      <FeedPosts />
     </div>
   );
 };
 
-export default PrivatePage;
+export default Feed;
