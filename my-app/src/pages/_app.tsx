@@ -1,3 +1,4 @@
+import { AuthProvider } from '@/contexts/AuthContext';
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 
@@ -81,9 +82,9 @@ export default function App({ Component, pageProps }: AppProps) {
         </button>
       </div>
     </header>
-
+<AuthProvider>
     <Component {...pageProps} />
-
+</AuthProvider>
     <footer className="mt-20 px-6 py-12 border-t border-t-white/10">
       <nav className="w-full max-w-[600px] mx-auto flex gap-3 justify-center items-center">
         <Link

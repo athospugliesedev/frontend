@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import LogoCadastro from '../assets/bro.png';
 import LogoLogin from '../assets/bro2.png';
 import Image from 'next/image';
+import firebase from '../firebase';
+import { useRouter } from 'next/router';
+import { AuthContext } from '../contexts/AuthContext';
+import "firebase/auth";
+
+
 
 interface ITabEntry {
   header: string;
@@ -14,6 +20,8 @@ interface ILoginTabs {
 
 
 const Register = () => {
+  const auth = firebase.auth();
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -24,12 +32,24 @@ const Register = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value.trim() });
   };
 
-  const handleSubmit = (event: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
+  const handleSubmit = async (event: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
     event.preventDefault();
-    console.log(formData);
+    
+    if (formData.password !== formData.confirmPassword) {
+      console.log('Senhas não correspondem');
+      return;
+    }
+
+    try {
+      const userCredential = await auth.createUserWithEmailAndPassword(formData.email, formData.password);
+      const user = userCredential.user;
+      console.log('Usuário cadastrado com sucesso:', user);
+    } catch (error) {
+      console.log('Erro ao cadastrar usuário:', error);
+    }
 
     setFormData({
       username: '',
@@ -38,10 +58,7 @@ const Register = () => {
       password: '',
       confirmPassword: '',
     });
-
   };
-
-
   return (
     <>
       <div id='cadastro' className='flex flex-row gap-6'>
@@ -96,7 +113,7 @@ const Register = () => {
             <input
               className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 mb-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-orange-500'
               placeholder='********'
-              type='text'
+              type='password'
               id='confirmPassword'
               name='confirmPassword'
               value={formData.confirmPassword}
@@ -116,12 +133,46 @@ const Register = () => {
   );
 };
 
-const Login = () => {
-  const handleDataSubmit = (event: React.MouseEvent<HTMLFormElement, MouseEvent>) => {
-    event.preventDefault();
-    console.log('its working')
-  }
+const Login: React.FC = () => {
+  const auth = useContext(AuthContext);
+  const router = useRouter();
 
+  
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value.trim() });
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  
+    if (!auth) {
+      console.error('Erro: contexto de autenticação não encontrado');
+      return;
+    }
+  
+    try {
+      await auth.login(formData.email, formData.password);
+      // Login bem-sucedido
+      console.log('Login realizado com sucesso!');
+      router.push('/PrivatePage');
+    } catch (error) {
+      // Tratar erros de login
+      console.error('Erro durante o login:', error);
+    }
+  
+    setFormData({
+      email: '',
+      password: '',
+    });
+  };
+  
   return (
     <>
       <div id='cadastro' className='flex flex-row gap-6'>
@@ -129,9 +180,8 @@ const Login = () => {
           <Image className='rounded-md' src={LogoLogin} alt='logo' />
         </div>
         <div className='w-3/5'>
-          <form className='flex flex-col bg-zinc-700 shadow-md rounded px-8 pt-6 pb-8 mb-4'>
+          <form className='flex flex-col bg-zinc-700 shadow-md rounded px-8 pt-6 pb-8 mb-4' onSubmit={handleSubmit}>
             <h1 className='text-orange-500 text-2xl font-bold text-center'>Login</h1>
-          
             <label className='block uppercase tracking-wide text-white text-xs font-semibold mb-2' htmlFor='email'>E-mail</label>
             <input
               className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 mb-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-orange-500'
@@ -139,9 +189,9 @@ const Login = () => {
               type='text'
               id='email'
               name='email'
-          
+              value={formData.email}
+              onChange={handleChange}
             />
-         
             <label className='block uppercase tracking-wide text-white text-xs font-semibold mb-2' htmlFor='email'>Senha</label>
             <input
               className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 mb-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-orange-500'
@@ -149,11 +199,12 @@ const Login = () => {
               type='password'
               id='password'
               name='password'
-              security='password'
+              value={formData.password}
+              onChange={handleChange}
             />
-
-            <button className="text-white leading-tight font-medium self-center w-64 h-12 py-3 px-4 rounded-md ring-inset ring-1 ring-orange-400 bg-orange-500 hover:ring-orange-500 hover:bg-orange-600 active:opacity-80 transition-all duration-75"
-        
+            <button
+              className="text-white leading-tight font-medium self-center w-64 h-12 py-3 px-4 rounded-md ring-inset ring-1 ring-orange-400 bg-orange-500 hover:ring-orange-500 hover:bg-orange-600 active:opacity-80 transition-all duration-75"
+              type="submit"
             >
               Entrar
             </button>
@@ -161,9 +212,10 @@ const Login = () => {
         </div>
       </div>
     </>
+  );
+};
 
-  )
-}
+
 
 const Tabs = ({ config }: ILoginTabs) => {
   const [activeTab, setActiveTab] = React.useState(0);
