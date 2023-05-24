@@ -55,7 +55,7 @@ const Register = () => {
           username,
           email,
         });
-          router.push('/PrivatePage');
+          router.push('/feed');
 
         console.log('Usuário cadastrado com sucesso:', user);
         console.log('Username:', username);
