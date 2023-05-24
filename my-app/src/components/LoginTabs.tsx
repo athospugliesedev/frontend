@@ -6,7 +6,7 @@ import firebase from '../firebase';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../contexts/AuthContext';
 import "firebase/auth";
-
+import "firebase/database"
 
 
 interface ITabEntry {
@@ -21,6 +21,7 @@ interface ILoginTabs {
 
 const Register = () => {
   const auth = firebase.auth();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -46,18 +47,28 @@ const Register = () => {
     try {
       const userCredential = await auth.createUserWithEmailAndPassword(formData.email, formData.password);
       const user = userCredential.user;
-      console.log('Usuário cadastrado com sucesso:', user);
+      const { username, email } = formData;
+    
+      if (user) {
+        const userRef = firebase.database().ref('users').child(user.uid);
+        userRef.set({
+          username,
+          email,
+        });
+          router.push('/PrivatePage');
+
+        console.log('Usuário cadastrado com sucesso:', user);
+        console.log('Username:', username);
+
+    
+
+      } else {
+        console.log('Não foi possível obter o usuário cadastrado.');
+      }
     } catch (error) {
       console.log('Erro ao cadastrar usuário:', error);
     }
-
-    setFormData({
-      username: '',
-      email: '',
-      confirmEmail: '',
-      password: '',
-      confirmPassword: '',
-    });
+    
   };
   return (
     <>
