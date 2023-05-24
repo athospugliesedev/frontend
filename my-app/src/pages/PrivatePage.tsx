@@ -7,8 +7,6 @@ const PrivatePage: React.FC = () => {
   const router = useRouter();
 
   if (!user) {
-    // Redirecionar para página de login
-    router.push('/login');
     return null;
   }
 

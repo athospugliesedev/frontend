@@ -159,11 +159,9 @@ const Login: React.FC = () => {
   
     try {
       await auth.login(formData.email, formData.password);
-      // Login bem-sucedido
       console.log('Login realizado com sucesso!');
       router.push('/PrivatePage');
     } catch (error) {
-      // Tratar erros de login
       console.error('Erro durante o login:', error);
     }
   

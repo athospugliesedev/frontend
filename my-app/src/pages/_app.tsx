@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const links = [
     {
       title: "Home",
-      href: "/",
+      href: "",
     },
     {
       title: "Sobre",
@@ -88,19 +88,19 @@ export default function App({ Component, pageProps }: AppProps) {
     <footer className="mt-20 px-6 py-12 border-t border-t-white/10">
       <nav className="w-full max-w-[600px] mx-auto flex gap-3 justify-center items-center">
         <Link
-          href="/"
+          href="/sobre"
           className="p-4 text-base text-zinc-200 hover:text-zinc-300"
         >
           Sobre
         </Link>
         <Link
-          href="/"
+          href="/agenda"
           className="p-4 text-base text-zinc-200 hover:text-zinc-300"
         >
           Agenda
         </Link>
         <Link
-          href="/"
+          href="/contato"
           className="p-4 text-base text-zinc-200 hover:text-zinc-300"
         >
           Contato

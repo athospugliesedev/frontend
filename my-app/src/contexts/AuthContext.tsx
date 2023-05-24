@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import firebase from '../firebase' // Importe o arquivo firebaseConfig.js (ou o caminho correto do arquivo)
+import firebase from '../firebase' 
 
 type AuthContextType = {
   user: firebase.User | null;
