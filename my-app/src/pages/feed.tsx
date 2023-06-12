@@ -159,7 +159,7 @@ function FeedPosts() {
                 />
                 <button
                   onClick={() => handleSaveEdit(post.id)}
-                  className="px-4 py-2 mt-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+                  className="px-4 py-2 mt-2 text-white bg-orange-500 rounded hover:bg-orange-600"
                 >
                   Salvar
                 </button>
@@ -172,15 +172,13 @@ function FeedPosts() {
   <div className="flex items-center mt-2">
     <button
       onClick={() => handleEditPost(post.id, post.content)}
-      className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
     >
-      <RiEditBoxLine />
+      <RiEditBoxLine size={18} color='blue'/>
     </button>
     <button
       onClick={() => handleDeletePost(post.id)}
-      className="ml-2 px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
     >
-      <RiDeleteBin6Line />
+      <RiDeleteBin6Line size={18} color='red' />
     </button>
   </div>
             )}
@@ -202,17 +200,17 @@ const Feed: React.FC = () => {
 
   return (
     <div className='mx-6 lg:mx-96 bg-black-100 '>
-      <h1 className="text-2xl font-bold mb-4">Página Privada</h1>
-      <p className="mb-2">Bem-vindo, {user.email}!</p>
+      <h1 className="text-2xl font-bold mb-4 text-white">Timeline</h1>
+      <div className='flex justify-between mb-4'>
+      <p className="mb-2 text-white">Bem-vindo, <span className='underline'>{user.email}!</span></p>
       <button
         onClick={() => logout()}
-        className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
+        className="px-4 py-2 text-white bg-orange-500 rounded hover:bg-orange-600"
       >
         Logout
       </button>
-      <h2 className="text-xl mt-4">Post Form</h2>
+       </div>
       <PostForm />
-      <h2 className="text-xl mt-4">Feed</h2>
       <FeedPosts />
     </div>
   );

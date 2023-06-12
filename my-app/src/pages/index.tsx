@@ -51,8 +51,24 @@ export default function index() {
             </div>
 
             <div className="w-full max-w-[40%] pl-4 border-l border-l-white/10 flex flex-col gap-2">
-              {[1, 2, 3].map((article) => {
-                const now = new Date()
+              {[1, 2, 3, 4].map((article, index) => {
+                const now = new Date();
+
+                const titles = [
+                  "Jovem Creator lança o single, Te Prometi com participação de Cadence",
+                  "Novo lançamento de artista renomado disponível agora",
+                  "Descubra a nova exposição de arte na cidade",
+                  "Jovem Creator lança o single",
+
+                ];
+
+                const descriptions = [
+                  "Escute o novo lançamento do jovem talento jaboatonense",
+                  "Confira a música mais recente do talentoso artista",
+                  "Visite a galeria local para ver as obras de artistas contemporâneos",
+                  "recente do talentoso artista",
+                ];
+
                 return (
                   <ArticleListItem
                     date={now.toLocaleString("pt-br", {
@@ -60,8 +76,8 @@ export default function index() {
                       day: "numeric",
                       year: "numeric",
                     })}
-                    title="Jovem Creator lança o single, Te Prometi com participação de Cadence"
-                    description="Escute o novo lançamento do jovem talento jaboatonense"
+                    title={titles[index]}
+                    description={descriptions[index]}
                     id={article}
                     slug={article.toString()}
                     key={article}
@@ -69,6 +85,7 @@ export default function index() {
                 );
               })}
             </div>
+
           </div>
         </section>
       </main>
@@ -76,15 +93,43 @@ export default function index() {
         <h1 className="text-orange-500 text-lg mb-6 font-bold mt-6">
           Últimos lançamentos
         </h1>
-        <div className="flex-1 flex flex-row gap-3 p-6  h-96">
 
+        <div className="noticia-principal flex-1 flex flex-row gap-4 p-6 rounded-xl bg-zinc-800 ">
+        <div className="flex flex-col gap-3 w-1/2">
 
-          <div className="flex-1 flex flex-row gap-3 p-6 h-96">
-            <h2 className="text-xl font-semibold text-zinc-300">abc</h2>
-            <div className="w-full max-w-[40%] pl-4 border-l border-l-white/10 flex flex-col gap-2">
-              aaaa
-            </div>
+            <img
+              src="https://portalrapmais.com/wp-content/uploads/2023/06/Metro-Boomin-Spider-750x375.jpg"
+              alt=""
+              className="h-28 object-fill  w-1/1 rounded-xl"
+            />
+              <p className="text-xl text-white font-bold">
+              Metro Boomin diz não tentou superar sucesso de “Sunflower” em ‘Homem-Aranha Atraves do Aranhaverso’
+
+              </p>
+
+            <p className="text-base text-zinc-300">
+            O filme “Homem-Aranha: Através do Aranhaverso” dominou tudo desde que foi lançado. O filme recebeu ótimas críticas e continua a atrair grandes números de bilheteria. Além disso, tem uma série de ligações promocionais, incluindo uma trilha sonora produzida pelo incrivelmente...
+
+            </p>
           </div>
+          <div className="flex flex-col gap-3 w-1/2">
+
+          <img
+              src="https://portalrapmais.com/wp-content/uploads/2023/05/veigh-1.jpg"
+              alt=""
+              className="h-28 object-fill object-center w-1/1 rounded-xl"
+            />
+              <p className="text-xl text-white font-bold">
+              Rapper Veigh revela que não esperava grande sucesso do álbum “Dos Prédios Deluxe” e detalhe seu “diferencial”
+              </p>
+
+            <p className="text-base text-zinc-300">
+            Veigh, um trapper paulistano de 22 anos, teve a maior estreia de um álbum brasileiro no Spotify, superando Anitta. Seu álbum “Dos Prédios Deluxe” foi lançado em 19 de maio e teve mais de 6,5 milhões de streams em seu primeiro dia na plataforma.
+</p>
+          </div>
+          
+
+
           <div className="w-full max-w-[39.5%] pl-4 border-l border-l-white/10 flex flex-col gap-2">
             <div style={{ borderRadius: '12px' }}>
               <iframe

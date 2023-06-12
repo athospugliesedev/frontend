@@ -26,60 +26,38 @@ export default function App({ Component, pageProps }: AppProps) {
       title: "Home",
       href: "",
     },
-    {
-      title: "Sobre",
-      href: "sobre",
-    },
-    {
-      title: "Blog",
-      href: "blog",
-    },
-    {
-      title: "Agenda",
-      href: "agenda",
-    },
-    {
-      title: "Contato",
-      href: "contato",
-    },
-
   ];
 
 
 
   return (
   <>
-    <header className="mb-20 bg-zinc-900 p-6 border-b border-b-white/10 grid grid-cols-3 items-center sticky top-0">
-    <strong style={sedgwick.style} className="text-5xl text-orange-400">
+    <header className="mb-20 bg-zinc-900 p-6 border-b border-b-white/10 grid grid-cols-3  justify-between sticky top-0">
 
-        Na rua
-      </strong>
 
-      <nav className="justify-self-center flex flex-row">
-        {links.map((link) => {
+      {links.map((link) => {
           return (
             <Link
               key={link.href}
               href={`/${link.href}`}
-              className="uppercase py-2 px-3 rounded-md text-zinc-100 hover:text-zinc-300 hover:bg-white/5 transition-all duration-150 leading-tight"
             >
-              {link.title}
-            </Link>
+<strong style={sedgwick.style} className="text-5xl text-orange-400">
+
+Na rua
+</strong>
+    </Link>
           );
         })}
-      </nav>
 
       <div className="justify-self-end flex flex-row gap-2">
-        <button className="text-white leading-tight font-medium py-3 px-4 rounded-full ring-inset ring-1 ring-white/5 bg-white/5 hover:bg-white/10 active:opacity-80 transition-all duration-75">
-          Log in
-        </button>
-        <button 
-        className="text-white leading-tight font-medium py-3 px-4 rounded-full ring-inset ring-1 ring-orange-400 bg-orange-500 hover:ring-orange-500 hover:bg-orange-600 active:opacity-80 transition-all duration-75 cursor-pointer">
+
+      
          <Link
+                 className="text-white leading-tight font-medium py-3 px-4 rounded-full ring-inset ring-1 ring-orange-400 bg-orange-500 hover:ring-orange-500 hover:bg-orange-600 active:opacity-80 transition-all duration-75 cursor-pointer"
+
          href='/signArea'>
-          Registre-se
+          Área do Usuário
          </Link>
-        </button>
       </div>
     </header>
 <AuthProvider>
@@ -87,30 +65,30 @@ export default function App({ Component, pageProps }: AppProps) {
 </AuthProvider>
     <footer className="mt-20 px-6 py-12 border-t border-t-white/10">
       <nav className="w-full max-w-[600px] mx-auto flex gap-3 justify-center items-center">
-        <Link
-          href="/sobre"
-          className="p-4 text-base text-zinc-200 hover:text-zinc-300"
+        <p
+          className="text-base text-zinc-200 hover:text-zinc-300"
         >
-          Sobre
+          Feito com 🧡 por</p>
+        <Link
+          href="https://github.com/athospugliesedev"
+          target='_blank'
+          className="text-base text-zinc-200 hover:text-zinc-300"
+        >
+          Athos
         </Link>
+        <p className='text-base text-zinc-200 hover:text-zinc-300'>e</p>
         <Link
-          href="/agenda"
-          className="p-4 text-base text-zinc-200 hover:text-zinc-300"
+          href="https://github.com/Saulo-Ferraz"
+          target='_blank'
+          className="text-base text-zinc-200 hover:text-zinc-300"
         >
-          Agenda
-        </Link>
-        <Link
-          href="/contato"
-          className="p-4 text-base text-zinc-200 hover:text-zinc-300"
-        >
-          Contato
+          Saulo
         </Link>
       </nav>
 
       <div className="grid grid-cols-3 mt-8">
         <p className="self-end justify-self-start text-zinc-300 text-sm max-w-[50%]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a
-          augue nibh.
+          2023 © Todos direitos reservados
         </p>
 
         <strong
@@ -121,7 +99,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </strong>
 
         <p className="self-end justify-self-end text-zinc-300 text-sm max-w-[50%]">
-          Cras sollicitudin facilisis interdum. Cras vitae elementum ante.
+          Projeto de Front-end • Universidade Católica de Pernambuco
         </p>
       </div>
     </footer>
