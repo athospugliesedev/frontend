@@ -56,17 +56,17 @@ export default function index() {
 
                 const titles = [
                   "Jovem Creator lança o single, Te Prometi com participação de Cadence",
-                  "Novo lançamento de artista renomado disponível agora",
-                  "Descubra a nova exposição de arte na cidade",
-                  "Jovem Creator lança o single",
+                  "Kog MC classificado pro Estadual",
+                  "Brenu e Mago de Tarso lançam novo Hit",
+                  "Restam apenas 4 vagas no Estadual",
 
                 ];
 
                 const descriptions = [
                   "Escute o novo lançamento do jovem talento jaboatonense",
-                  "Confira a música mais recente do talentoso artista",
-                  "Visite a galeria local para ver as obras de artistas contemporâneos",
-                  "recente do talentoso artista",
+                  "Após vencer batalha da Jangamaica, MC garante a vaga visando o Nacional",
+                  "Carolina Freestyle chega na pista com pegada de Flow Junino",
+                  "Final do mês de junho será marcado por uma forte disputa entre os Mcs",
                 ];
 
                 return (
